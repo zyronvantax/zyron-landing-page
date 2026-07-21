@@ -46,10 +46,19 @@ const menu = document.querySelector(".menu");
 
 menuToggle.addEventListener("click", () => {
   menu.classList.toggle("open");
-});
 
+  if (menu.classList.contains("open")) {
+    menuToggle.textContent = "✕";
+    menuToggle.setAttribute("aria-label", "Fechar menu");
+  } else {
+    menuToggle.textContent = "☰";
+    menuToggle.setAttribute("aria-label", "Abrir menu");
+  }
+});
 menu.querySelectorAll("a").forEach((link) => {
   link.addEventListener("click", () => {
     menu.classList.remove("open");
+    menuToggle.textContent = "☰";
+    menuToggle.setAttribute("aria-label", "Abrir menu");
   });
 });
