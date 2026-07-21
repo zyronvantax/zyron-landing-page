@@ -14,11 +14,17 @@
       <div class="container nav">
        <a href="#" class="logo">ZYRON</a>
 
-<button class="menu-toggle" aria-label="Abrir menu">
+<button
+  class="menu-toggle"
+  type="button"
+  aria-label="Abrir menu"
+  aria-expanded="false"
+  aria-controls="menu-principal"
+>
   ☰
 </button>
 
-<nav class="menu">
+<nav class="menu" id="menu-principal" aria-label="Navegação principal">
           <a href="#inicio">Início</a>
           <a href="#servicos">Serviços</a>
           <a href="#sobre">Sobre</a>

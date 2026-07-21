@@ -50,9 +50,11 @@ menuToggle.addEventListener("click", () => {
   if (menu.classList.contains("open")) {
     menuToggle.textContent = "✕";
     menuToggle.setAttribute("aria-label", "Fechar menu");
+    menuToggle.setAttribute("aria-expanded", "true");
   } else {
     menuToggle.textContent = "☰";
     menuToggle.setAttribute("aria-label", "Abrir menu");
+    menuToggle.setAttribute("aria-expanded", "false");
   }
 });
 menu.querySelectorAll("a").forEach((link) => {
@@ -60,6 +62,7 @@ menu.querySelectorAll("a").forEach((link) => {
     menu.classList.remove("open");
     menuToggle.textContent = "☰";
     menuToggle.setAttribute("aria-label", "Abrir menu");
+    menuToggle.setAttribute("aria-expanded", "false");
   });
 });
 document.addEventListener("click", (event) => {
@@ -74,5 +77,16 @@ document.addEventListener("click", (event) => {
     menu.classList.remove("open");
     menuToggle.textContent = "☰";
     menuToggle.setAttribute("aria-label", "Abrir menu");
+    menuToggle.setAttribute("aria-expanded", "false");
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && menu.classList.contains("open")) {
+    menu.classList.remove("open");
+    menuToggle.textContent = "☰";
+    menuToggle.setAttribute("aria-label", "Abrir menu");
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.focus();
   }
 });
