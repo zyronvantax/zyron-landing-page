@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zyronvantax.github.io/zyron-landing-page/sitemap.xml
