@@ -21,11 +21,13 @@ try {
 
   if (!prefersReducedMotion) {
     elements.forEach((element, index) => {
+      const delay = Math.min(index * 75, 300);
+
       element.style.opacity = "0";
       element.style.transform = "translateY(24px)";
       element.style.transition = `
-        opacity 0.7s ease ${index * 0.12}s,
-        transform 0.7s ease ${index * 0.12}s
+        opacity 0.7s ease ${delay}ms,
+        transform 0.7s ease ${delay}ms
       `;
     });
 
@@ -51,10 +53,18 @@ try {
         }
       );
 
-      revealElements.forEach((element, index) => {
+      const sectionDelayIndexes = new Map();
+
+      revealElements.forEach((element) => {
+        const section = element.closest("section");
+        const sectionIndex = sectionDelayIndexes.get(section) || 0;
+        const delay = Math.min(sectionIndex * 100, 300);
+
         element.classList.add("reveal");
-        element.style.transitionDelay = `${index * 0.12}s`;
+        element.style.transitionDelay = `${delay}ms`;
         revealObserver.observe(element);
+
+        sectionDelayIndexes.set(section, sectionIndex + 1);
       });
     } else {
       showRevealElements();
