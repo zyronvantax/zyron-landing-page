@@ -359,3 +359,58 @@ a {
   transform: translateY(0);
 }
 
+.contact {
+  padding: 110px 0;
+  border-top: 1px solid var(--border);
+}
+
+.contact-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 48px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background:
+    linear-gradient(145deg, rgba(139, 92, 246, 0.08), transparent),
+    var(--surface);
+}
+
+.contact-box h2 {
+  max-width: 680px;
+  margin-top: 18px;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.contact-box p {
+  max-width: 620px;
+  margin-top: 18px;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.contact-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 210px;
+}
+
+@media (max-width: 900px) {
+  .contact-box {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .contact-actions {
+    width: 100%;
+  }
+
+  .contact-actions .button {
+    width: 100%;
+  }
+}
