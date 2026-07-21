@@ -119,3 +119,14 @@ document.addEventListener("keydown", (event) => {
     menuToggle.focus();
   }
 });
+
+const desktopMediaQuery = window.matchMedia("(min-width: 901px)");
+
+desktopMediaQuery.addEventListener("change", (event) => {
+  if (event.matches) {
+    menu.classList.remove("open");
+    menuToggle.textContent = "☰";
+    menuToggle.setAttribute("aria-label", "Abrir menu");
+    menuToggle.setAttribute("aria-expanded", "false");
+  }
+});
