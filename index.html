@@ -359,6 +359,18 @@
             </div>
 
             <div class="form-field">
+              <label for="contact-deadline">Prazo desejado</label>
+              <select id="contact-deadline" name="deadline" required>
+                <option value="" disabled selected>Selecione um prazo</option>
+                <option value="ate-7-dias">Até 7 dias</option>
+                <option value="1-2-semanas">De 1 a 2 semanas</option>
+                <option value="2-4-semanas">De 2 a 4 semanas</option>
+                <option value="mais-de-1-mes">Mais de 1 mês</option>
+                <option value="nao-definido">Ainda não defini</option>
+              </select>
+            </div>
+
+            <div class="form-field">
               <label for="contact-message">Mensagem</label>
               <textarea
                 id="contact-message"
