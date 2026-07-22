@@ -5,6 +5,7 @@
   --text: #f5f5f7;
   --text-muted: #a5a5b5;
   --primary: #8b5cf6;
+  --primary-contrast: #7c3aed;
   --primary-light: #a78bfa;
   --border: rgba(255, 255, 255, 0.1);
   --max-width: 1180px;
@@ -134,7 +135,7 @@ button:focus-visible,
   padding: 0 24px;
   border: 1px solid var(--primary);
   border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary), #6d28d9);
+  background: linear-gradient(135deg, var(--primary-contrast), #6d28d9);
   color: white;
   font-weight: 700;
   transition:
@@ -428,7 +429,7 @@ button:focus-visible,
   margin: 0 auto 22px;
   border: 5px solid var(--background);
   border-radius: 50%;
-  background: var(--primary);
+  background: var(--primary-contrast);
   box-shadow: 0 12px 28px rgba(139, 92, 246, 0.24);
   color: var(--text);
   font-size: 0.78rem;
