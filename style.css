@@ -503,6 +503,7 @@ button:focus-visible,
 }
 
 .form-field input,
+.form-field select,
 .form-field textarea {
   width: 100%;
   padding: 14px 16px;
@@ -519,6 +520,7 @@ button:focus-visible,
 }
 
 .form-field input:focus-visible,
+.form-field select:focus-visible,
 .form-field textarea:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
