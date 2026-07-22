@@ -83,118 +83,122 @@ try {
 const menuToggle = document.querySelector(".menu-toggle");
 const menu = document.querySelector(".menu");
 
-const menuSectionLinks = Array.from(
-  menu.querySelectorAll('a[href^="#"]')
-)
-  .map((link) => {
-    const targetId = link.getAttribute("href").slice(1);
-    const section = document.getElementById(targetId);
+if (menu && menuToggle) {
+  const menuSectionLinks = Array.from(
+    menu.querySelectorAll('a[href^="#"]')
+  )
+    .map((link) => {
+      const targetId = link.getAttribute("href").slice(1);
+      const section = document.getElementById(targetId);
 
-    if (!section || !section.matches("main section[id]")) {
-      return null;
+      if (!section || !section.matches("main section[id]")) {
+        return null;
+      }
+
+      return { link, section };
+    })
+    .filter(Boolean);
+
+  const setActiveMenuLink = (activeSection) => {
+    menuSectionLinks.forEach(({ link, section }) => {
+      const isActive = section === activeSection;
+
+      link.classList.toggle("active", isActive);
+
+      if (isActive) {
+        link.setAttribute("aria-current", "location");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
+
+  const closeMenu = (restoreFocus = false) => {
+    menu.classList.remove("open");
+    menuToggle.textContent = "☰";
+    menuToggle.setAttribute("aria-label", "Abrir menu");
+    menuToggle.setAttribute("aria-expanded", "false");
+
+    if (restoreFocus) {
+      menuToggle.focus();
     }
+  };
 
-    return { link, section };
-  })
-  .filter(Boolean);
+  if ("IntersectionObserver" in window && menuSectionLinks.length > 0) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (firstEntry, secondEntry) =>
+              Math.abs(
+                firstEntry.boundingClientRect.top - window.innerHeight * 0.25
+              ) -
+              Math.abs(
+                secondEntry.boundingClientRect.top - window.innerHeight * 0.25
+              )
+          )[0];
 
-const setActiveMenuLink = (activeSection) => {
-  menuSectionLinks.forEach(({ link, section }) => {
-    const isActive = section === activeSection;
+        if (visibleEntry) {
+          setActiveMenuLink(visibleEntry.target);
+        }
+      },
+      {
+        rootMargin: "-25% 0px -65% 0px",
+        threshold: 0,
+      }
+    );
 
-    link.classList.toggle("active", isActive);
+    menuSectionLinks.forEach(({ section }) => {
+      sectionObserver.observe(section);
+    });
+  }
 
-    if (isActive) {
-      link.setAttribute("aria-current", "page");
+  menuToggle.addEventListener("click", () => {
+    menu.classList.toggle("open");
+
+    if (menu.classList.contains("open")) {
+      menuToggle.textContent = "✕";
+      menuToggle.setAttribute("aria-label", "Fechar menu");
+      menuToggle.setAttribute("aria-expanded", "true");
     } else {
-      link.removeAttribute("aria-current");
+      closeMenu();
     }
   });
-};
 
-if ("IntersectionObserver" in window && menuSectionLinks.length > 0) {
-  const sectionObserver = new IntersectionObserver(
-    (entries) => {
-      const visibleEntry = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort(
-          (firstEntry, secondEntry) =>
-            Math.abs(firstEntry.boundingClientRect.top - window.innerHeight * 0.25) -
-            Math.abs(secondEntry.boundingClientRect.top - window.innerHeight * 0.25)
-        )[0];
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      closeMenu();
+    });
+  });
 
-      if (visibleEntry) {
-        setActiveMenuLink(visibleEntry.target);
-      }
-    },
-    {
-      rootMargin: "-25% 0px -65% 0px",
-      threshold: 0,
+  document.addEventListener("click", (event) => {
+    const clickedInsideMenu = menu.contains(event.target);
+    const clickedToggle = menuToggle.contains(event.target);
+
+    if (
+      menu.classList.contains("open") &&
+      !clickedInsideMenu &&
+      !clickedToggle
+    ) {
+      closeMenu();
     }
-  );
+  });
 
-  menuSectionLinks.forEach(({ section }) => {
-    sectionObserver.observe(section);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menu.classList.contains("open")) {
+      closeMenu(true);
+    }
+  });
+
+  const desktopMediaQuery = window.matchMedia("(min-width: 901px)");
+
+  desktopMediaQuery.addEventListener("change", (event) => {
+    if (event.matches) {
+      closeMenu();
+    }
   });
 }
-
-menuToggle.addEventListener("click", () => {
-  menu.classList.toggle("open");
-
-  if (menu.classList.contains("open")) {
-    menuToggle.textContent = "✕";
-    menuToggle.setAttribute("aria-label", "Fechar menu");
-    menuToggle.setAttribute("aria-expanded", "true");
-  } else {
-    menuToggle.textContent = "☰";
-    menuToggle.setAttribute("aria-label", "Abrir menu");
-    menuToggle.setAttribute("aria-expanded", "false");
-  }
-});
-menu.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    menu.classList.remove("open");
-    menuToggle.textContent = "☰";
-    menuToggle.setAttribute("aria-label", "Abrir menu");
-    menuToggle.setAttribute("aria-expanded", "false");
-  });
-});
-document.addEventListener("click", (event) => {
-  const clickedInsideMenu = menu.contains(event.target);
-  const clickedToggle = menuToggle.contains(event.target);
-
-  if (
-    menu.classList.contains("open") &&
-    !clickedInsideMenu &&
-    !clickedToggle
-  ) {
-    menu.classList.remove("open");
-    menuToggle.textContent = "☰";
-    menuToggle.setAttribute("aria-label", "Abrir menu");
-    menuToggle.setAttribute("aria-expanded", "false");
-  }
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && menu.classList.contains("open")) {
-    menu.classList.remove("open");
-    menuToggle.textContent = "☰";
-    menuToggle.setAttribute("aria-label", "Abrir menu");
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.focus();
-  }
-});
-
-const desktopMediaQuery = window.matchMedia("(min-width: 901px)");
-
-desktopMediaQuery.addEventListener("change", (event) => {
-  if (event.matches) {
-    menu.classList.remove("open");
-    menuToggle.textContent = "☰";
-    menuToggle.setAttribute("aria-label", "Abrir menu");
-    menuToggle.setAttribute("aria-expanded", "false");
-  }
-});
 
 const contactForm = document.querySelector(".contact-form");
 
@@ -226,6 +230,9 @@ if (contactForm) {
     statusMessage.textContent = "";
     statusMessage.classList.remove("is-success", "is-error");
 
+    const controller = new AbortController();
+    const timeoutId = window.setTimeout(() => controller.abort(), 12000);
+
     try {
       const response = await fetch(contactForm.action, {
         method: "POST",
@@ -233,6 +240,7 @@ if (contactForm) {
         headers: {
           Accept: "application/json",
         },
+        signal: controller.signal,
       });
 
       if (!response.ok) {
@@ -244,11 +252,14 @@ if (contactForm) {
       statusMessage.textContent =
         "Mensagem enviada com sucesso! Entraremos em contato em breve.";
       statusMessage.classList.add("is-success");
-    } catch {
+    } catch (error) {
       statusMessage.textContent =
-        "Não foi possível enviar a mensagem. Tente novamente ou envie um e-mail.";
+        error.name === "AbortError"
+          ? "O envio demorou mais que o esperado. Tente novamente."
+          : "Não foi possível enviar a mensagem. Tente novamente ou envie um e-mail.";
       statusMessage.classList.add("is-error");
     } finally {
+      window.clearTimeout(timeoutId);
       submitButton.disabled = false;
       submitButton.textContent = originalButtonText;
     }

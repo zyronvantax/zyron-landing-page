@@ -96,7 +96,7 @@
       </div>
     </header>
 
-    <main id="conteudo-principal">
+    <main id="conteudo-principal" tabindex="-1">
    
 <section class="hero" id="inicio">
 
@@ -111,7 +111,7 @@
 
             <p>
               Criamos experiências digitais profissionais para marcas que
-              querem crescer, vender mais e se destacar no mercado.
+              querem crescer, apoiar suas vendas e se destacar no mercado.
             </p>
 
             <div class="hero-actions">
@@ -124,10 +124,10 @@
 
           <div class="hero-card">
             <p class="card-label">PROJETO EM DESTAQUE</p>
-            <h2>Landing pages que convertem</h2>
+            <h2>Landing pages voltadas à conversão</h2>
             <p>
               Design premium, velocidade, responsividade e uma comunicação
-              pensada para transformar visitantes em clientes.
+              pensada para transformar visitantes em oportunidades de contato.
             </p>
 
             <div class="metrics">
@@ -152,12 +152,18 @@
 
     </section>
 
-    <section class="services" id="servicos">
+    <section
+      class="services"
+      id="servicos"
+      aria-labelledby="services-title"
+    >
       <div class="container">
         <div class="section-heading">
           <span class="badge">Nossas soluções</span>
 
-          <h2>Estratégia, design e tecnologia em um só lugar</h2>
+          <h2 id="services-title">
+            Estratégia, design e tecnologia em um só lugar
+          </h2>
 
           <p>
             Criamos soluções digitais para marcas que querem crescer com
@@ -255,12 +261,14 @@
       </div>
     </section>
 
-    <section class="about" id="sobre">
+    <section class="about" id="sobre" aria-labelledby="about-title">
       <div class="container about-content">
         <div class="about-text">
       <span class="badge">Sobre a Zyron</span>
 
-      <h2>Criamos presença digital com estratégia e qualidade.</h2>
+      <h2 id="about-title">
+        Criamos presença digital com estratégia e qualidade.
+      </h2>
 
       <p>
         A Zyron nasceu com o objetivo de transformar ideias em experiências
@@ -292,12 +300,14 @@
   </div>
 </section>
 
-    <section class="projects" id="projetos">
+    <section class="projects" id="projetos" aria-labelledby="projects-title">
       <div class="container">
         <div class="section-heading">
           <span class="badge">Portfólio</span>
 
-          <h2>Projetos pensados para gerar presença e resultados.</h2>
+          <h2 id="projects-title">
+            Projetos pensados para gerar presença e resultados.
+          </h2>
 
           <p>
             Conheça projetos e propostas digitais em diferentes estágios,
@@ -428,12 +438,12 @@
       </div>
     </section>
 
-    <section class="contact" id="contato">
+    <section class="contact" id="contato" aria-labelledby="contact-title">
       <div class="container contact-box">
         <div>
           <span class="badge">Vamos conversar</span>
 
-          <h2>Tem uma ideia? Vamos transformar em projeto.</h2>
+          <h2 id="contact-title">Tem uma ideia? Vamos transformar em projeto.</h2>
 
           <p>
             Entre em contato para criar uma landing page, site profissional ou
@@ -550,7 +560,11 @@
                 required
               />
               <label for="contact-consent">
-                Concordo que meus dados sejam usados apenas para responder a esta solicitação.
+                Concordo com o uso dos meus dados para responder a esta
+                solicitação, conforme a
+                <a href="./politica-de-privacidade.html">
+                  Política de Privacidade</a
+                >.
               </label>
             </div>
 
@@ -577,12 +591,12 @@
 
     <p>© 2026 Zyron. Todos os direitos reservados.</p>
 
-    <div class="footer-links">
+    <nav class="footer-links" aria-label="Navegação do rodapé">
       <a href="#inicio">Início</a>
       <a href="#servicos">Serviços</a>
       <a href="#projetos">Projetos</a>
       <a href="#contato">Contato</a>
-    </div>
+    </nav>
   </div>
 </footer>
 
