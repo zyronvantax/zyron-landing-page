@@ -391,9 +391,86 @@ a {
   font-size: 0.96rem;
 }
 
+.method {
+  padding-block: 112px;
+  background:
+    radial-gradient(circle at 12% 80%, rgba(40, 122, 75, 0.1), transparent 30%),
+    var(--background);
+}
+
+.method-steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  list-style: none;
+}
+
+.method-step {
+  position: relative;
+  min-width: 0;
+}
+
+.method-step:not(:last-child)::after {
+  position: absolute;
+  top: 31px;
+  left: calc(50% + 40px);
+  width: calc(100% - 60px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), rgba(40, 122, 75, 0.2));
+  content: "";
+}
+
+.step-number {
+  position: relative;
+  z-index: 1;
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 22px;
+  border: 6px solid var(--background);
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 10px 24px rgba(23, 82, 53, 0.2);
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.step-content {
+  min-height: 210px;
+  padding: 26px 22px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 12px 30px rgba(20, 37, 29, 0.07);
+  text-align: center;
+}
+
+.step-content h3 {
+  margin-bottom: 12px;
+  font-size: 1.15rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.step-content p {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+}
+
 @media (max-width: 900px) {
   .benefits-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .method-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .method-step:nth-child(2)::after {
+    display: none;
   }
 }
 
@@ -493,6 +570,42 @@ a {
     width: 50px;
     height: 50px;
     border-radius: 15px;
+  }
+
+  .method {
+    padding-block: 80px;
+  }
+
+  .method-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .method-step {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+  }
+
+  .method-step:not(:last-child)::after {
+    display: block;
+    top: 52px;
+    left: 25px;
+    width: 2px;
+    height: calc(100% - 6px);
+  }
+
+  .step-number {
+    width: 52px;
+    height: 52px;
+    margin: 0;
+    border-width: 5px;
+  }
+
+  .step-content {
+    min-height: auto;
+    padding: 22px 20px;
+    text-align: left;
   }
 }
 
