@@ -1,11 +1,11 @@
 :root {
-  --background: #0a0a0f;
-  --surface: #12121a;
-  --surface-light: #1b1b27;
+  --background: #080a0d;
+  --surface: #10141a;
+  --surface-light: #171c23;
   --text: #f5f5f7;
   --text-muted: #b3b3c2;
-  --primary: #8b5cf6;
-  --primary-light: #a78bfa;
+  --primary: #1687ff;
+  --primary-light: #55a7ff;
   --border: rgba(255, 255, 255, 0.1);
   --max-width: 920px;
 }
@@ -23,7 +23,7 @@ html {
 body {
   min-width: 320px;
   background:
-    radial-gradient(circle at 15% 5%, rgba(139, 92, 246, 0.16), transparent 30%),
+    radial-gradient(circle at 15% 5%, rgba(22, 135, 255, 0.14), transparent 30%),
     var(--background);
   color: var(--text);
   font-family:
@@ -67,11 +67,14 @@ a:focus-visible {
 }
 
 .brand {
-  color: var(--text);
-  font-size: 1.25rem;
-  font-weight: 900;
-  letter-spacing: 0.14em;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
+}
+
+.brand img {
+  width: 144px;
+  height: auto;
 }
 
 .back-link {
@@ -88,7 +91,7 @@ a:focus-visible {
   border: 1px solid var(--border);
   border-radius: 24px;
   background:
-    linear-gradient(145deg, rgba(139, 92, 246, 0.07), transparent 32%),
+    linear-gradient(145deg, rgba(22, 135, 255, 0.07), transparent 32%),
     var(--surface);
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
 }
@@ -101,9 +104,9 @@ a:focus-visible {
 .eyebrow {
   display: inline-flex;
   padding: 7px 12px;
-  border: 1px solid rgba(139, 92, 246, 0.38);
+  border: 1px solid rgba(22, 135, 255, 0.38);
   border-radius: 999px;
-  background: rgba(139, 92, 246, 0.1);
+  background: rgba(22, 135, 255, 0.1);
   color: var(--primary-light);
   font-size: 0.78rem;
   font-weight: 800;

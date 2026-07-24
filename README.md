@@ -1,52 +1,40 @@
-# Zyron — Soluções Digitais
+# VANTAX — Sites e soluções digitais
 
-Landing page institucional da Zyron, criada para apresentar serviços, projetos
-e soluções digitais de forma profissional, moderna e orientada a resultados.
+Site institucional estático da VANTAX, estruturado para apresentar serviços,
+processo, projetos e conduzir contatos ao WhatsApp.
 
-## Site publicado
-
-Acesse a versão online:
+## Site público
 
 [https://zyronvantax.github.io/zyron-landing-page/](https://zyronvantax.github.io/zyron-landing-page/)
 
-## Tecnologias utilizadas
+O nome presente no endereço é o identificador histórico do repositório no
+GitHub Pages. A marca exibida no projeto é VANTAX.
 
-- HTML
-- CSS
-- JavaScript
-- Git
+## Tecnologias
+
+- HTML semântico
+- CSS responsivo
+- JavaScript sem dependências
 - GitHub Pages
 
-## Principais recursos
+## Recursos
 
-- Design responsivo para computadores, tablets e celulares
-- Menu de navegação mobile
-- Animações de entrada e durante a rolagem
-- Suporte a usuários que preferem menos animações
-- Acessibilidade básica para navegação por teclado
-- Metadados básicos de SEO e Open Graph
-- Favicon personalizado
+- Menu desktop e mobile acessível
+- Seções comerciais com CTAs para WhatsApp
+- Formulário que organiza a mensagem e abre o WhatsApp
+- FAQ nativo com `details` e `summary`
+- Metadados de SEO, Open Graph, Twitter Card e dados estruturados
+- Política de privacidade
+- Página 404 compatível com o subdiretório do GitHub Pages
+- Respeito a `prefers-reduced-motion`
 
-## Como executar localmente
+## Executar localmente
 
-1. Clone o repositório:
+O projeto não exige instalação de dependências. Abra a pasta no VS Code e use
+uma extensão como Live Server, ou execute:
 
-   ```bash
-   git clone https://github.com/zyronvantax/zyron-landing-page.git
-   ```
+```bash
+python -m http.server 5500
+```
 
-2. Entre na pasta do projeto:
-
-   ```bash
-   cd zyron-landing-page
-   ```
-
-3. Abra o arquivo `index.html` diretamente no navegador ou utilize uma extensão
-   como Live Server em seu editor de código.
-
-O projeto é estático e não exige instalação de dependências.
-
-## Status do projeto
-
-Em desenvolvimento. A landing page está funcional e publicada, com melhorias
-contínuas de conteúdo, portfólio, acessibilidade e experiência do usuário.
+Depois acesse [http://localhost:5500](http://localhost:5500).
